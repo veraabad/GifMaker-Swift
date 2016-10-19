@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5gO-Pk-oml">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -28,7 +28,7 @@
         <!--My Collection-->
         <scene sceneID="oWA-Or-fKE">
             <objects>
-                <viewController storyboardIdentifier="SavedGifsViewController" title="My Collection" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TTn-vD-RZK" customClass="SavedGifsViewController" customModule="GifMaker_Swift_Template" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SavedGifsViewController" title="My Collection" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TTn-vD-RZK" customClass="SavedGifsViewController" customModule="GifMaker" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="99f-NC-PB4"/>
                         <viewControllerLayoutGuide type="bottom" id="Bq3-vc-ocT"/>
@@ -72,11 +72,11 @@
                                         <size key="customSize" width="177" height="177"/>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="rwu-2U-9Jt"/>
-                                                <exclude reference="geI-1K-NiT"/>
                                                 <exclude reference="3kd-e2-Fe5"/>
                                                 <exclude reference="E83-tT-0hp"/>
                                                 <exclude reference="EbC-AT-WNL"/>
+                                                <exclude reference="geI-1K-NiT"/>
+                                                <exclude reference="rwu-2U-9Jt"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -166,7 +166,7 @@
         <!--Add a Caption-->
         <scene sceneID="Z4h-8f-Dm4">
             <objects>
-                <viewController storyboardIdentifier="GifEditorViewController" title="Add a Caption" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f9r-yB-fH6" customClass="GifEditorViewController" customModule="GifMaker_Swift_Template" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GifEditorViewController" title="Add a Caption" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f9r-yB-fH6" customClass="GifEditorViewController" customModule="GifMaker" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CYF-u5-UsX"/>
                         <viewControllerLayoutGuide type="bottom" id="D6R-EB-G9p"/>
@@ -223,7 +223,7 @@
         <!--Gif Preview View Controller-->
         <scene sceneID="RLM-Oz-YW9">
             <objects>
-                <viewController storyboardIdentifier="PreviewViewController" title="Preview" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EEQ-Fe-Uvr" userLabel="Gif Preview View Controller" customClass="PreviewViewController" customModule="GifMaker_Swift_Template" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreviewViewController" title="Preview" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EEQ-Fe-Uvr" userLabel="Gif Preview View Controller" customClass="PreviewViewController" customModule="GifMaker" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V0Q-gz-a1l"/>
                         <viewControllerLayoutGuide type="bottom" id="MGn-2Q-vv0"/>
@@ -290,7 +290,7 @@
         <!--DetailViewController-->
         <scene sceneID="0g9-2g-zMX">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GMe-5I-6JH" userLabel="DetailViewController" customClass="DetailViewController" customModule="GifMaker_Swift_Template" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GMe-5I-6JH" userLabel="DetailViewController" customClass="DetailViewController" customModule="GifMaker" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jgu-b2-AJL"/>
                         <viewControllerLayoutGuide type="bottom" id="Iw5-PK-D8U"/>
@@ -421,14 +421,14 @@
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="R9a-vV-eDN"/>
                                                         <exclude reference="ECm-Xo-rNd"/>
+                                                        <exclude reference="R9a-vV-eDN"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
-                                                        <include reference="R9a-vV-eDN"/>
                                                         <include reference="ECm-Xo-rNd"/>
+                                                        <include reference="R9a-vV-eDN"/>
                                                     </mask>
                                                 </variation>
                                             </label>
@@ -450,19 +450,19 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="C9e-vj-fTC"/>
-                                        <exclude reference="xKm-q0-HXa"/>
                                         <exclude reference="jn1-8P-3Vd"/>
+                                        <exclude reference="xKm-q0-HXa"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <exclude reference="b0q-Ei-aYT"/>
-                                        <include reference="C9e-vj-fTC"/>
                                         <exclude reference="8R2-tU-gcE"/>
+                                        <include reference="C9e-vj-fTC"/>
                                         <exclude reference="JnZ-X9-PAS"/>
                                         <exclude reference="TiI-KM-TU2"/>
-                                        <include reference="xKm-q0-HXa"/>
+                                        <exclude reference="b0q-Ei-aYT"/>
                                         <include reference="jn1-8P-3Vd"/>
+                                        <include reference="xKm-q0-HXa"/>
                                     </mask>
                                 </variation>
                             </view>
