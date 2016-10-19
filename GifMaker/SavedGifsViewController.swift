@@ -29,8 +29,10 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
         // Hide if there are no savedGifs
         if let count = savedGifs?.count {
             emptyView.isHidden = count > 0 ? true : false
+            self.navigationController?.navigationBar.isHidden = count > 0 ? false : true
         }
         collectionView.reloadData()
+        self.applyTheme(theme: .Light)
     }
     
     override func viewDidLoad() {
@@ -39,9 +41,17 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
         // Check to see if we need to show welcome screen
         showWelcome()
         
+        createBottomBlur()
+        
         if let archGifs = NSKeyedUnarchiver.unarchiveObject(withFile: gifsFilePath) as? [Gif] {
             savedGifs = archGifs
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.title = ""
     }
     
     func showWelcome() {
@@ -49,6 +59,14 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
             let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
             self.navigationController?.pushViewController(welcomeVC, animated: true)
         }
+    }
+    
+    // Create a white blur near bottom of view
+    func createBottomBlur() {
+        let bottomBlur = CAGradientLayer()
+        bottomBlur.frame = CGRect(x: 0.0, y: self.view.frame.size.height - 100.0, width: self.view.frame.size.width, height: 100.0)
+        bottomBlur.colors = [UIColor.init(white: 1.0, alpha: 0.0).cgColor, UIColor.white.cgColor]
+        self.view.layer.insertSublayer(bottomBlur, above: self.collectionView.layer)
     }
     
     // MARK: PreviewVC Delegate methods

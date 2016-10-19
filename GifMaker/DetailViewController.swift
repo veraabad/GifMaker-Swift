@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     
     var gif: Gif?
     
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var gifImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -21,7 +22,13 @@ class DetailViewController: UIViewController {
         if let img = gif?.gifImage {
             gifImageView.image = img
         }
+        
+        // Round corners on shareButton
+        shareButton.layer.cornerRadius = cornerRad
+        
+        self.applyTheme(theme: .DarkTranslucent)
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

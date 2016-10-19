@@ -27,16 +27,24 @@ class PreviewViewController: UIViewController {
         if let img = gif?.gifImage {
             gifImagePreview.image = img
         }
+        self.title = "Preview"
+        self.applyTheme(theme: .Dark)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Modify buttons appearance
-        shareButton.layer.cornerRadius = CGFloat(4.0)
+        shareButton.layer.cornerRadius = cornerRad
         shareButton.layer.borderColor = UIColor(red: 255/255, green: 65/255, blue: 112/255, alpha: 1.0).cgColor
         shareButton.layer.borderWidth = CGFloat(1.0)
         
-        saveButton.layer.cornerRadius = CGFloat(4.0)
+        saveButton.layer.cornerRadius = cornerRad
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.title = ""
     }
     
     override func didReceiveMemoryWarning() {

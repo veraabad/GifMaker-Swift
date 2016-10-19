@@ -15,6 +15,7 @@ let frameCount = 16
 let frameRate = 15
 let delayTime:Float = 0.2
 let loopCount = 0
+let cornerRad = CGFloat(4.0)
 
 extension UIViewController {
     

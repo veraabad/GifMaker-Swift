@@ -25,6 +25,7 @@
 		CBBFE23F1DB6E4AD00295FFF /* AVAssetImageGeneratorTimePoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBFE23C1DB6E4AD00295FFF /* AVAssetImageGeneratorTimePoints.swift */; };
 		CBBFE2401DB6E4AD00295FFF /* Regift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBFE23D1DB6E4AD00295FFF /* Regift.swift */; };
 		CBBFE2411DB6E4AD00295FFF /* RegiftCaption.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBFE23E1DB6E4AD00295FFF /* RegiftCaption.swift */; };
+		CBBFE2441DB81CD500295FFF /* UIViewController+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBFE2431DB81CD500295FFF /* UIViewController+Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		CBBFE23C1DB6E4AD00295FFF /* AVAssetImageGeneratorTimePoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAssetImageGeneratorTimePoints.swift; sourceTree = "<group>"; };
 		CBBFE23D1DB6E4AD00295FFF /* Regift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regift.swift; sourceTree = "<group>"; };
 		CBBFE23E1DB6E4AD00295FFF /* RegiftCaption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegiftCaption.swift; sourceTree = "<group>"; };
+		CBBFE2431DB81CD500295FFF /* UIViewController+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Theme.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,16 +83,11 @@
 			isa = PBXGroup;
 			children = (
 				CBBFE2071DB6A57A00295FFF /* AppDelegate.swift */,
-				CBBFE22A1DB6E21600295FFF /* UIViewController+Record.swift */,
-				CBBFE22C1DB6E22200295FFF /* WelcomeViewController.swift */,
-				CBBFE22E1DB6E23A00295FFF /* UIImage+Gif.swift */,
-				CBBFE2301DB6E24800295FFF /* GifEditorViewController.swift */,
-				CBBFE2321DB6E25A00295FFF /* PreviewViewController.swift */,
-				CBBFE2341DB6E27300295FFF /* SavedGifsViewController.swift */,
-				CBBFE2361DB6E28500295FFF /* DetailViewController.swift */,
-				CBBFE2381DB6E28F00295FFF /* GifCell.swift */,
+				CBBFE2471DB82F3B00295FFF /* View */,
+				CBBFE2481DB82F4200295FFF /* Model */,
+				CBBFE2461DB82F1200295FFF /* Extensions */,
+				CBBFE2451DB82EDF00295FFF /* ViewControllers */,
 				CBBFE2421DB6E4B400295FFF /* Regift Files */,
-				CBBFE23A1DB6E29700295FFF /* Gif.swift */,
 				CBBFE2241DB6D66600295FFF /* Assets */,
 				CBBFE2251DB6D70100295FFF /* Plist */,
 			);
@@ -126,6 +123,44 @@
 				CBBFE23E1DB6E4AD00295FFF /* RegiftCaption.swift */,
 			);
 			name = "Regift Files";
+			sourceTree = "<group>";
+		};
+		CBBFE2451DB82EDF00295FFF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CBBFE22C1DB6E22200295FFF /* WelcomeViewController.swift */,
+				CBBFE2301DB6E24800295FFF /* GifEditorViewController.swift */,
+				CBBFE2321DB6E25A00295FFF /* PreviewViewController.swift */,
+				CBBFE2341DB6E27300295FFF /* SavedGifsViewController.swift */,
+				CBBFE2361DB6E28500295FFF /* DetailViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CBBFE2461DB82F1200295FFF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CBBFE22A1DB6E21600295FFF /* UIViewController+Record.swift */,
+				CBBFE2431DB81CD500295FFF /* UIViewController+Theme.swift */,
+				CBBFE22E1DB6E23A00295FFF /* UIImage+Gif.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		CBBFE2471DB82F3B00295FFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CBBFE2381DB6E28F00295FFF /* GifCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		CBBFE2481DB82F4200295FFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBBFE23A1DB6E29700295FFF /* Gif.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +250,7 @@
 				CBBFE23F1DB6E4AD00295FFF /* AVAssetImageGeneratorTimePoints.swift in Sources */,
 				CBBFE2331DB6E25A00295FFF /* PreviewViewController.swift in Sources */,
 				CBBFE2351DB6E27300295FFF /* SavedGifsViewController.swift in Sources */,
+				CBBFE2441DB81CD500295FFF /* UIViewController+Theme.swift in Sources */,
 				CBBFE2371DB6E28500295FFF /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,13 +24,29 @@ class GifEditorViewController: UIViewController, UITextFieldDelegate {
         subscribeToKeyboardNotifications()
         
         // Add title to navbar
-        self.title = "Add Caption"
+        self.title = "Add a Caption"
+        self.navigationController?.navigationBar.isHidden = false
+        self.applyTheme(theme: .Dark)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Change font for placeholder text and regular text in captionTextField
+        let textAttributes: [String: Any] = [NSStrokeColorAttributeName: UIColor.black, NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40.0)!, NSStrokeWidthAttributeName: -4.0]
+        
+        captionTextField.defaultTextAttributes = textAttributes
+        captionTextField.textAlignment = .center
+        captionTextField.attributedPlaceholder = NSAttributedString(string: "Add Caption", attributes: textAttributes)
+        
+        addTapToDismiss()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         unsubscribeToKeyboardNotifications()
+        self.title = ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,7 +54,19 @@ class GifEditorViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Tap gesture
+    
+    // Tap gesture that dismisses the keyboard
+    func addTapToDismiss() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
     // MARK: textField delegate methods
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.placeholder = ""
