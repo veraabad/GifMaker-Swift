@@ -24,7 +24,6 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // UIBarButtonItems
     var deleteBttnItem: UIBarButtonItem!
-    var editBttnItem: UIBarButtonItem!
     var rightBarItem:UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -43,7 +42,6 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
                 rightBarItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(enableSelectState))
                 self.navigationItem.rightBarButtonItem = rightBarItem
                 // init other barButtonItems
-                editBttnItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editGif))
                 deleteBttnItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteGif))
             }
         }
@@ -100,7 +98,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
     // MARK: CollectionView Delegate and DataSource methods
     
     func enableSelectState() {
-        // Add delete and edit barButtonItems to navBar
+        // Add delete barButtonItem to navBar
         if isSelectionState {
             self.navigationItem.leftBarButtonItems?.removeAll()
             rightBarItem.title = "Select"
@@ -109,32 +107,23 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
             collectionView.allowsMultipleSelection = !isSelectionState
         } else {
             collectionView.allowsMultipleSelection = !isSelectionState
-            editBttnItem.isEnabled = false
             deleteBttnItem.isEnabled = false
             rightBarItem.title = "Done"
-            self.navigationItem.leftBarButtonItems = [editBttnItem, deleteBttnItem]
+            self.navigationItem.leftBarButtonItem = deleteBttnItem
             isSelectionState = !isSelectionState
         }
     }
     
     // Enable left bar button items when selection is above 0
-    // but only editBttnItem can be chosen if selected items is 1 and only 1
     func enableBttnItems(cellCount: Int?) {
         guard let count = cellCount else {
             return
         }
         
-        if count > 1 {
-            editBttnItem.isEnabled = false
+        if count > 0 {
             deleteBttnItem.isEnabled = true
             
-        }
-        if count == 1 {
-            editBttnItem.isEnabled = true
-            deleteBttnItem.isEnabled = true
-        }
-        if count == 0 {
-            editBttnItem.isEnabled = false
+        } else {
             deleteBttnItem.isEnabled = false
         }
     }
@@ -149,10 +138,6 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
             let cell = getCell(path: path)
             cell.selectCell()
         }
-    }
-    
-    func editGif() {
-        print("Edit function called")
     }
     
     // Delete selected gifs
