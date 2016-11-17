@@ -129,9 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				CBBFE22C1DB6E22200295FFF /* WelcomeViewController.swift */,
+				CBBFE2341DB6E27300295FFF /* SavedGifsViewController.swift */,
 				CBBFE2301DB6E24800295FFF /* GifEditorViewController.swift */,
 				CBBFE2321DB6E25A00295FFF /* PreviewViewController.swift */,
-				CBBFE2341DB6E27300295FFF /* SavedGifsViewController.swift */,
 				CBBFE2361DB6E28500295FFF /* DetailViewController.swift */,
 			);
 			name = ViewControllers;

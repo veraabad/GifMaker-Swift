@@ -54,7 +54,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fqs-g7-xdB">
-                                                    <color key="backgroundColor" red="0.59776823540000001" green="0.92353203709999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="sIz-jm-F3r">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="NZq-R0-8oj"/>
+                                                        <constraint firstAttribute="width" constant="50" id="QuL-wL-Jpa"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -62,7 +68,9 @@
                                             <constraint firstItem="fqs-g7-xdB" firstAttribute="top" secondItem="CX1-16-Ojz" secondAttribute="top" id="0eJ-i2-giU"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="fqs-g7-xdB" secondAttribute="bottom" constant="-8" id="3kd-e2-Fe5"/>
                                             <constraint firstItem="fqs-g7-xdB" firstAttribute="leading" secondItem="CX1-16-Ojz" secondAttribute="leadingMargin" constant="-8" id="E83-tT-0hp"/>
+                                            <constraint firstItem="sIz-jm-F3r" firstAttribute="trailing" secondItem="fqs-g7-xdB" secondAttribute="trailing" id="EXj-sR-Osu"/>
                                             <constraint firstItem="fqs-g7-xdB" firstAttribute="centerX" secondItem="CX1-16-Ojz" secondAttribute="centerX" id="EbC-AT-WNL"/>
+                                            <constraint firstItem="sIz-jm-F3r" firstAttribute="bottom" secondItem="fqs-g7-xdB" secondAttribute="bottom" id="HS9-xX-yCY"/>
                                             <constraint firstAttribute="bottom" secondItem="fqs-g7-xdB" secondAttribute="bottom" id="MmB-lf-00V"/>
                                             <constraint firstItem="fqs-g7-xdB" firstAttribute="leading" secondItem="CX1-16-Ojz" secondAttribute="leading" id="R3a-zz-bh8"/>
                                             <constraint firstAttribute="trailing" secondItem="fqs-g7-xdB" secondAttribute="trailing" id="USg-35-dWI"/>
@@ -80,6 +88,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
+                                            <outlet property="checkImage" destination="sIz-jm-F3r" id="fXd-44-Wxn"/>
                                             <outlet property="gifImageView" destination="fqs-g7-xdB" id="bhI-Ef-hEw"/>
                                         </connections>
                                     </collectionViewCell>
@@ -499,6 +508,7 @@
     </scenes>
     <resources>
         <image name="Close" width="22" height="22"/>
+        <image name="check" width="33" height="33"/>
         <image name="createButton" width="60" height="60"/>
         <image name="graphicCollectionEmpty" width="72" height="73"/>
     </resources>
