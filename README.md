@@ -35,4 +35,12 @@ Swift:
   
   let videoTrack = videoAsset.tracks(withMediaType: AVMediaTypeVideo)[0]
   
- As you can see, both lines are pretty much the same. 
+ As you can see, both snippets are pretty much the same. But not everything is that easy. Look at the following line of code from the same function in Objective-C:
+ 
+ CGAffineTransform t2 = CGAffineTransformRotate(t1, M_PI_2);
+ 
+ The function CGAffineTransformRotate is not found in Swift, however a peek into the documentation and it shows you the Swift equivalent: rotated(by:). Using that information I was able to translate it into Swift:
+ 
+ let finalTransform = t1.rotated(by: CGFloat(M_PI_2))
+ 
+ The Objective-C implementation used two categories that were applied to the UIViewController class. So to translate those to Swift I used its equivalent which is extensions. 
