@@ -56,7 +56,7 @@ class PreviewViewController: UIViewController {
     
     @IBAction func shareAction(_ sender: AnyObject) {
         do {
-            let memedImage = try Data(contentsOf: gif?.url as! URL)
+            let memedImage = try Data(contentsOf: (gif?.url as URL?)!)
             let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
             
             activityVC.completionWithItemsHandler = {(activityItems, completed, returnItems, error) -> Void in

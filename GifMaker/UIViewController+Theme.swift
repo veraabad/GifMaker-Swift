@@ -24,7 +24,7 @@ extension UIViewController {
                 navController.navigationBar.setBackgroundImage(nil, for: .default)
                 navController.navigationBar.barTintColor = UIColor.white
                 navController.navigationBar.tintColor = pinkRed
-                navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: grayBlue]
+                navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: grayBlue]
                 
                 self.view.backgroundColor = UIColor.white
             }
@@ -40,7 +40,7 @@ extension UIViewController {
                 self.edgesForExtendedLayout = UIRectEdge()
                 
                 navController.navigationBar.tintColor = UIColor.white
-                navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+                navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             }
             
         case .DarkTranslucent:

@@ -33,11 +33,13 @@ class GifEditorViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Change font for placeholder text and regular text in captionTextField
-        let textAttributes: [String: Any] = [NSStrokeColorAttributeName: UIColor.black, NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40.0)!, NSStrokeWidthAttributeName: -4.0]
+        let textAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeColor.rawValue): UIColor.black, NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white, NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): UIFont(name: "HelveticaNeue-CondensedBlack", size: 40.0)!, NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeWidth.rawValue): -4.0]
+        
+        let textAttributesKey: [NSAttributedString.Key: Any] = Dictionary(uniqueKeysWithValues: textAttributes.lazy.map{($0.key, $0.value)})
         
         captionTextField.defaultTextAttributes = textAttributes
         captionTextField.textAlignment = .center
-        captionTextField.attributedPlaceholder = NSAttributedString(string: "Add Caption", attributes: textAttributes)
+        captionTextField.attributedPlaceholder = NSAttributedString(string: "Add Caption", attributes: textAttributesKey)
         
         addTapToDismiss()
     }
@@ -64,7 +66,7 @@ class GifEditorViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: textField delegate methods
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
     
@@ -80,16 +82,16 @@ class GifEditorViewController: UIViewController, UITextFieldDelegate {
     // MARK: observe and respond to keyboard notifications
     
     func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeToKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         if self.view.frame.origin.y >= 0 {
             var rect = self.view.frame
             rect.origin.y -= getKeyboardHeight(notification: notification)
@@ -97,7 +99,7 @@ class GifEditorViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y < 0 {
             var rect = self.view.frame
             rect.origin.y += getKeyboardHeight(notification: notification)
@@ -107,7 +109,7 @@ class GifEditorViewController: UIViewController, UITextFieldDelegate {
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         
         return keyboardSize.cgRectValue.height
     }

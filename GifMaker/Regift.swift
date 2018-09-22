@@ -225,7 +225,7 @@ private struct Group {
         
         for frameNumber in 0 ..< frameCount {
             let seconds: Float64 = Float64(startTime) + (Float64(increment) * Float64(frameNumber))
-            let time = CMTimeMakeWithSeconds(seconds, Regift.TimeInterval)
+            let time = CMTimeMakeWithSeconds(seconds, preferredTimescale: Regift.TimeInterval)
             
             timePoints.append(time)
         }
@@ -259,7 +259,7 @@ private struct Group {
      */
     public func createGIFForTimePoints(timePoints: [TimePoint], fileProperties: [String: AnyObject], frameProperties: [String: AnyObject], frameCount: Int) throws -> NSURL {
         // Ensure the source media is a valid file.
-        guard asset.tracks(withMediaCharacteristic: AVMediaCharacteristicVisual).count > 0 else {
+        guard asset.tracks(withMediaCharacteristic: AVMediaCharacteristic.visual).count > 0 else {
             throw RegiftError.SourceFormatInvalid
         }
         
@@ -281,7 +281,7 @@ private struct Group {
         
         generator.appliesPreferredTrackTransform = true
         
-        let tolerance = CMTimeMakeWithSeconds(Regift.Tolerance, Regift.TimeInterval)
+        let tolerance = CMTimeMakeWithSeconds(Regift.Tolerance, preferredTimescale: Regift.TimeInterval)
         generator.requestedTimeToleranceBefore = tolerance
         generator.requestedTimeToleranceAfter = tolerance
         
@@ -298,7 +298,7 @@ private struct Group {
         
         generator.generateCGImagesAsynchronously(forTimes: times, completionHandler: { (requestedTime, image, actualTime, result, error) in
             guard let imageRef = image , error == nil else {
-                print("An error occurred: \(error), image is \(image)")
+                print("An error occurred: \(String(describing: error)), image is \(String(describing: image))")
                 dispatchError = true
                 gifGroup.leave()
                 return
@@ -355,7 +355,7 @@ private struct Group {
         
         generator.appliesPreferredTrackTransform = true
         
-        let tolerance = CMTimeMakeWithSeconds(Regift.Tolerance, Regift.TimeInterval)
+        let tolerance = CMTimeMakeWithSeconds(Regift.Tolerance, preferredTimescale: Regift.TimeInterval)
         generator.requestedTimeToleranceBefore = tolerance
         generator.requestedTimeToleranceAfter = tolerance
         

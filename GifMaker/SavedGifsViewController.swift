@@ -55,7 +55,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
         showWelcome()
         
         createBottomBlur()
-        
+
         if let archGifs = NSKeyedUnarchiver.unarchiveObject(withFile: gifsFilePath) as? [Gif] {
             savedGifs = archGifs
         }
@@ -85,7 +85,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
     // MARK: PreviewVC Delegate methods
     
     func previewVC(preview: PreviewViewController, didSaveGif gif: Gif) {
-        gif.gifData = NSData(contentsOf: gif.url as! URL)
+        gif.gifData = NSData(contentsOf: (gif.url as URL?)!)
         savedGifs?.append(gif)
         // NSKeyedArchiver.archiveRootObject(savedGifs!, toFile: gifsFilePath)
         saveGifs(gifs: savedGifs!)
@@ -97,7 +97,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // MARK: CollectionView Delegate and DataSource methods
     
-    func enableSelectState() {
+    @objc func enableSelectState() {
         // Add delete barButtonItem to navBar
         if isSelectionState {
             self.navigationItem.leftBarButtonItems?.removeAll()
@@ -141,7 +141,7 @@ class SavedGifsViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     // Delete selected gifs
-    func deleteGif() {
+    @objc func deleteGif() {
         let cellsIndexPaths = collectionView.indexPathsForSelectedItems
         for indexP in cellsIndexPaths! {
             let cellToDel = getCell(path: indexP)

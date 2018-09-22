@@ -18,18 +18,18 @@ extension Regift {
         
         // Text attributes
         let color = UIColor.white
-        var attributes = [NSForegroundColorAttributeName:color, NSFontAttributeName:font, NSStrokeColorAttributeName : UIColor.black, NSStrokeWidthAttributeName : -4] as [String : Any]
+        var attributes:[NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor:color, NSAttributedString.Key.font:font, NSAttributedString.Key.strokeColor : UIColor.black, NSAttributedString.Key.strokeWidth : -4]
         
         // Get scale factor
-        let testSize:CGSize =  text.size(attributes: attributes)
+        let testSize:CGSize =  text.size(withAttributes: attributes)
         let scaleFactor = testSize.height/360
         
         // Apply scale factor to attributes
         let scaledFont: UIFont = UIFont(name: "HelveticaNeue-CondensedBlack", size:image.size.height * scaleFactor)!
-        attributes[NSFontAttributeName] = scaledFont
+        attributes[NSAttributedString.Key.font] = scaledFont
         
         // Text size
-        let size:CGSize =  text.size(attributes: attributes)
+        let size:CGSize =  text.size(withAttributes: attributes)
         let adjustedWidth = ceil(size.width)
         let adjustedHeight = ceil(size.height)
         

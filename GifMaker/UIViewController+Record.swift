@@ -69,7 +69,7 @@ extension UIViewController: UINavigationControllerDelegate {
 // MARK: - UIViewController: UIImagePickerControllerDelegate
 
 extension UIViewController: UIImagePickerControllerDelegate {
-    func imagePicker(source: UIImagePickerControllerSourceType) -> UIImagePickerController {
+    func imagePicker(source: UIImagePickerController.SourceType) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.sourceType = source
         picker.mediaTypes = [kUTTypeMovie as String]
@@ -79,14 +79,14 @@ extension UIViewController: UIImagePickerControllerDelegate {
         return picker
     }
     
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let mediaType = info[UIImagePickerControllerMediaType] as! String
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let mediaType = info[.mediaType] as! String
         
         if mediaType == kUTTypeMovie as String {
-            let videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
-            
-            let start = info["_UIImagePickerControllerVideoEditingStart"] as? NSNumber
-            let end = info["_UIImagePickerControllerVideoEditingEnd"] as? NSNumber
+            let videoURL = info[.mediaURL] as! NSURL
+
+            let start = info[UIImagePickerController.InfoKey(rawValue: "_UIImagePickerControllerVideoEditingStart")] as? NSNumber
+            let end = info[UIImagePickerController.InfoKey(rawValue: "_UIImagePickerControllerVideoEditingEnd")] as? NSNumber
             var duration: NSNumber?
             if let start = start {
                 duration = NSNumber(value: end!.floatValue - start.floatValue)
@@ -94,7 +94,6 @@ extension UIViewController: UIImagePickerControllerDelegate {
             else {
                 duration = nil
             }
-            
             cropVideoToSquare(rawVideoURL: videoURL, start: start, duration: duration)
         }
     }
@@ -105,22 +104,22 @@ extension UIViewController: UIImagePickerControllerDelegate {
     func cropVideoToSquare(rawVideoURL: NSURL, start: NSNumber?, duration: NSNumber?) {
         // Create AVAsset and AVAssetTrack
         let videoAsset = AVAsset(url: rawVideoURL as URL)
-        let videoTrack = videoAsset.tracks(withMediaType: AVMediaTypeVideo)[0]
+        let videoTrack = videoAsset.tracks(withMediaType: AVMediaType.video)[0]
         
         // Crop to square
         let videoComposition = AVMutableVideoComposition()
         videoComposition.renderSize = CGSize(width: videoTrack.naturalSize.height, height: videoTrack.naturalSize.height)
-        videoComposition.frameDuration = CMTimeMake(60, 30)
+        videoComposition.frameDuration = CMTimeMake(value: 60, timescale: 30)
         
         let instruction = AVMutableVideoCompositionInstruction()
-        instruction.timeRange = CMTimeRange(start: kCMTimeZero, duration: CMTimeMakeWithSeconds(60, 30))
+        instruction.timeRange = CMTimeRange(start: CMTime.zero, duration: CMTimeMakeWithSeconds(60, preferredTimescale: 30))
         
         // rotate to portrait
         let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
         let t1 = CGAffineTransform(translationX: videoTrack.naturalSize.height, y: -(videoTrack.naturalSize.width - videoTrack.naturalSize.height) / 2)
-        let finalTransform = t1.rotated(by: CGFloat(M_PI_2))
+        let finalTransform = t1.rotated(by: CGFloat(Double.pi / 2))
         
-        transformer.setTransform(finalTransform, at: kCMTimeZero)
+        transformer.setTransform(finalTransform, at: CMTime.zero)
         instruction.layerInstructions.append(transformer)
         videoComposition.instructions.append(instruction)
         
@@ -129,7 +128,7 @@ extension UIViewController: UIImagePickerControllerDelegate {
         exporter?.videoComposition = videoComposition
         let path = createPath()
         exporter?.outputURL = URL(fileURLWithPath: path)
-        exporter?.outputFileType = AVFileTypeQuickTimeMovie
+        exporter?.outputFileType = AVFileType.mov
         
         var croppedURL:NSURL?
         exporter?.exportAsynchronously { () in
@@ -168,7 +167,7 @@ extension UIViewController: UIImagePickerControllerDelegate {
         let regift: Regift
         
         if let start = start {
-            regift = Regift(sourceFileURL: videoURL, destinationFileURL: nil, startTime: start as Float, duration: duration as! Float, frameRate: frameRate, loopCount: loopCount)
+            regift = Regift(sourceFileURL: videoURL, destinationFileURL: nil, startTime: start.floatValue, duration: duration!.floatValue, frameRate: frameRate, loopCount: loopCount)
         }
         else {
             regift = Regift(sourceFileURL: videoURL, destinationFileURL: nil, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
